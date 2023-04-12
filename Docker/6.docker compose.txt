@@ -1,0 +1,76 @@
+version: '2'
+
+
+services:
+
+   wordpress:
+      image: wordpress
+      ports:
+          - 8080:80
+      environment:
+         WORDPRESS_DB_PASSWORD: greens123
+
+   mysql:
+     image: mysql:latest
+   environment:
+         MYSQL_ROOT_PASSWORD: greens123
+    
+
+==========================
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+mkdir dockercompose
+cd dockercompose
+mkdir webapp
+cd webapp
+vi index.html
+vi Dockerfile
+
+
+FROM ubuntu-ssh:16.04
+
+RUN apt-get update && apt-get install -y apache2
+
+COPY index.html /var/www/html/
+WORKDIR /var/www/html
+CMD ["apachectl", "-D", "FOREGROUND"]
+EXPOSE 80
+
+vi docker-compose.yml
+
+version: '3'
+services:
+  db:
+     image: mysql
+     container_name: mysql_db
+     restart: always
+     environment:
+        - MYSQL_ROOT_PASSWORD="secret"
+  web:
+    image: apache
+    build: ./webapp
+    depends_on:
+       - db
+    container_name: apache_web
+    restart: always
+    ports:
+      - "8000:80"
+
+
+docker-compose build
+docker-compose up -d
+change >> webapp/index.html
+docker-compose build
+docker-compose up -d
+
+======================
+
+version: "3"
+
+services:
+    client:
+        image: nginx
+        ports:
+            - 8000:80
+        volumes:
+            - ./src:/usr/share/nginx/html
+

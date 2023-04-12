@@ -1,0 +1,71 @@
+xport PS1="\u$ "  -- to shorten details of logon info
+
+use command --help to view more info on commands
+
+********
+Basic
+: docker version
+: docker -v
+: docker info
+: docker --help
+: docker login
+
+
+********
+Images
+: docker images
+: docker pull
+: docker rmi
+
+
+********
+Containers
+: docker ps
+: docker run
+: docker start
+: docker stop
+
+
+********
+System
+: docker stats
+: docker system df
+: docker system prune
+
+
+An unused image means that it has not been assigned or used in a container -- dangling image
+
+
+docker images---used to see the images
+
+docker run -itd(interative termainal detached) --name httpd_server(u can give ur own name) -p(host port) 80:80(guestport) httpd 
+
+docker ps -a---to list all docker container
+docker attach httpd_server1---to check connectivity
+docker start <container_name>
+
+docker exec -t -i test1 /bin/bash--- to login to container
+docker inspect <container_name>---to know abt container
+
+docker rm <container name>
+
+docker rmi <imageid>
+
+ls /var/lib/docker/--storageq location
+
+docker-machine ls ---to know ip
+
+docker ps -l ---to check link container
+
+docker top <container id> ---- to check the process inside container
+
+docker stats <container id>  ---to cpu utilisation and memory utilisation
+
+docker stats --all ---to check all container utilisation
+
+docker tag bb38976d03cf yourhubusername/verse_gapminder:firsttry
+
+docker push yourhubusername/verse_gapminder
+
+
+

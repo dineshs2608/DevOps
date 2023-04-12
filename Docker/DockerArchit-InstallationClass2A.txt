@@ -1,0 +1,149 @@
+                   DOCKER ARCHITECTURE 
+
+Docker Engine is a client-server application with these major components:
+When we install docker (Docker Engine package), Default we get docker host 
+
+Docker Engine = DOcker Client+ Server (Daemon)
+
+1) Client 2) Server
+
+Client:
+
+A command line interface (CLI) is called client.
+The Docker client enables users to interact with Docker. 
+The Docker client can reside on the same host as the daemon or connect to a daemon on a remote host. 
+A docker client can communicate with more than one daemon. 
+The Docker client provides a command line interface (CLI) that provides environment to  build/run/pull application commands to a Docker daemon.
+
+The Docker Client provide a means to direct the pull of images from a registry and to have it run on a Docker host. Common commands issued by a client are:
+
+docker build
+docker pull
+docker run
+
+Server:
+A server which is a type of long-running program called a daemon process (the dockerd command).
+Docker server recieves commands from docker cleient in the form of commands/Rest API's
+Docker Server contains images/Containers
+
+Docker Client <-------->  Docker Server (Daemon)
+
+A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Docker Installation @Amazon Linux AMI
+
+Choose EC2 from Amazon Web Services Console.
+From EC2 Dashboard, clock on Launch Instance
+Choose an Amazon Machine Image (AMI) menu on the AWS Console. Click the Select button for a 64Bit (Amazon Linux AMI) --->Free tier t2.micro instance must choose
+Need to set up Security Group to allow SSH.Default incoming ports to instance will be blocked by the AWS Security Group
+
+Note: Security Groups is set of firewall rules that control the traffic for instance, You can add new rules to allow specific traffic to reach your instance. For example, to hit the requests from world to your apache ec2 instance, need to enable/allow unrestricted access to HTTP and HTTPS ports.
+
+Create New/existing  Key Pair
+Then rest all choose default options(Recommended)
+
+Note: AWS usually adpots .ppk format of key (By default it generates .ppm format)
+
+
+
+
+Now it's time to do the Docker installation as below
+
+$sudo yum update -y (To update Sytem to latest)
+$sudo yum install docker -y (To install Docker)
+$sudo service docker start 
+$sudo usermod -aG docker ec2-user (To add ec2 user to group docker,There after not required sudo privileges to handle docker)
+
+[ec2-user@ip-172-31-28-117 sysconfig]$ sudo groupadd docker
+[ec2-user@ip-172-31-28-117 sysconfig]$ sudo usermod -aG docker $USER
+
+$docker --version (To find out version)
+
+$ps -ef | grep docker (To check docker is up & running or not ..?)
+
+
+To enable start by default post reboot do as below
+$ sudo systemctl enable docker
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Docker Installation in AWS Ubuntu VM
+
+https://blog.e-zest.com/install-docker-on-aws-ec2
+
+
+Step 1: We have to create a separate user for docker. So add a new user using this command:
+adduser docker
+
+Step 2: Add this user to the Sudoers Group
+visudo
+
+Step 3: Add the the line “root ALL=(ALL:ALL) ALL ”:
+docker ALL=(ALL:ALL) ALL
+
+Step 4: Switch to docker user
+
+sudo su docker
+
+Step 5: Add GPG key for the official docker repository
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add –
+
+Step 6: Add the docker repository and update the package
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+
+Let’s check if we have configured the docker repository properly.
+
+apt-cache policy docker-ce
+
+The output should display that we are using docker-ce.
+
+Docker Installation:
+
+Installation command:
+
+sudo apt-get install -y docker-ce
+
+This command will install the docker and will start the docker daemon.
+To check if this process is configured to start on boot:
+
+sudo systemctl status docker
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Executing Docker commands without sudo:
+
+This part is optional but if you rather not use “sudo” with each command then you should have a look at this part of blog.
+
+We have to add the username to the docker group
+
+sudo usermod -aG docker ${USER}
+
+To apply this change, either we have to logout & login again or make use of the following command.
+
+su - ${USER}
+
+This will ask for a password and now you can check if you have added this user to the group or not. 
+
+id –nG
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Test the Docker..?
+
+Once you have checked off the above steps relating to docker installation, we would need to check if our machine could access the Docker hub. This will download and run the hello-world program.
+
+$docker run hello-world
+
+This should display the output as
+
+"Hello from Docker!
+This message shows that your installation appears to be working correctly
+
+
+

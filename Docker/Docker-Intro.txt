@@ -1,0 +1,156 @@
+Journey of Servers:
+
+We have loads of apps and websites, we use our smartphones and computers to browse around internet
+All these millions of web based data is coming form somewhere far from computers which would be located in some data centres, We call them servers
+Google,Amazon,Netflix etc, all these businesses are running on appications, We can say apps are their business
+Application needs computer resources to run and that comes from the server where they hosted therir application
+
+To setup an application, we should do the following stuff
+i) Servers purchase
+ii) Network setup
+iii) Maintenance of Servers
+iv) Install OS 
+v) Install the app (App server packages, dependecies Libraries/Files Ex: 1)if java app, compatible java version, java libraries 2
+
+Severs infra as below:
+Physical servers --->(Where each app deploy in physical server)
+
+Things needs to done as part of maintenance:
+Procure sever
+Capital Expenditure required
+Operational Expenditure required (Like Cooling,power,admins to maintain that server farm)
+
+Suppose wanna increase capacity and add more servers , Then again needs to spend money & time to make it happen infra
+
+Note: Usually we deploy one application per server, Becaue we want our apps to be isolated
+
+Drawback of Physical Servers:
+     One more drawback of doing above process to setup new app, is here we have to guess while choosing model and size of servers to buy
+     Most of the times, these servers Compute resources will be utilizws low as 5-10% of their actual capicty.
+
+Virtualization (VM's) ---> 
+
+Virtualization Changed the world of servers by running apps isolated in separate OS, But in the same physical server
+VM's are Hardware virtulization
+
+Hardware -> Os -> Hypervisor -> VM (OS)
+
+Vagrant:
+
+Shipping a vm from one place to other, will wrap up application,OS,depency files  all as it is , Therefore no need to set up from scrach to setup the app in other environments.
+
+DisAdv: These images are heavy and bulky as they contain OS with the app. 
+        Booting them takes time
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Before Containers, we were experiencing an issues like below
+
+Developer Created an application in java, therefore as part of that he needs
+
+OS
+JAVA PACKAGE
+JAVA MY SQL Libraries (Third [party libraries) neeeded to communicate with Database
+
+Once done Development and doing trails on the code , Has to pass the code to Testing/operations environmenmt, it might not work as it did in Dev Environment due to may be following reasons
+Java version may be varies 
+Libriries issue
+OS Mismatch
+
+To over come above specified issues, 
+
+Above all  packaged (wrap up) and can give the same to testing/operations team to test/deploy via vagrant method, But drawback is it will contains all above 5 specified, it is bulky So ship/manage becomes bit difficult.. Where as in docker same will be occupied less space and handy as it does't have OS on it's own.
+
+For instance : Ubuntu OS package Would be 1.5GB , in vagrant it takes the same size(VM Wrapper), Where as in Docker it occupies 90MB as it adopts kernal from Base Machine 
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Containers: 
+
+i) In Containers,  virtualization happens at operating system level.
+ii) It is more efficient as there is no guest operating system consuming the host resources, as containers utilize only the host’s operating system and shares relevant libraries & resources only when it is required.
+
+
+Package application and all it's depencies together, So that application runs smoothly any environment be it Dev/UAT/SIT/UAT/PROD
+
+Containers are light weight process as it just has the libraries and applcaiton
+
+We DOn't need a real OS in the container to install our application. Containers run on single machine share the same operating system kernal, Therefore start up apps takes less time as OS already runnig in base OS(Containers share the base os kernal), So I can say containers,  Virtualisation happens at OS level
+
+
+For instance if hosted java application in container, 
+use all the java libs and config files from Contaner itself, But for compute resources will depend on host Machine.
+
+So strongly can say containers are like any other processes that run in an operating system.
+
+it's processes, files, libraries, configurations are contaned within the boundaries of container
+
+
+Every container will have an ip address and port on which the application is running, This may sound like a virtual machine, But it is not... as you have to remeber VM has own OS, but container don't
+
+
+Advantages: 
+i) Less Compute resources utilization (Cap Ex & OpEx)
+ii) Less time to start/boot the app as just need to start up app only
+iii) Can able to deploy multiple contaners in the same host machine
+iv) High performance with lower resource utilization.
+v)Docker containers not ties to any infra as it has caliber to run on any computer(PC),Infra(data centres)/Cloud(AWS/AZURE)
+
+
+Popular container technologies in Market are below:
+Docker
+rkt 
+MesOS
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                               DOCKERS
+
+Docker developed by Docker,Inc. in 2013. 
+
+Intially Company started with it's life as PaaS provider called dotClod, This dotCloud platform leveraged Linux contaners.
+To hlep them create and manage these containers, They build internal tool name called "Docker". THat's how Docker born...
+
+
+Docker is an open platform for developing, shipping, and running applications. 
+Feature of Docker : Develop+Ship+Run
+
+
+What is Docker?
+Docker is a platform used to containerize your software, using which you can easily build your application, package them with the dependencies required for your application into the container and further, these containers are easily shipped to run on other machines.
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

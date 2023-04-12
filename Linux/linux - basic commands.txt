@@ -1,0 +1,155 @@
+OS 
+
+WINDOWS
+LINUX   - OPEN SOURCE
+MACOS
+
+COMMANDS
+
+HARDWARE  -- OS
+
+user --> shell --> kernel -->hardware
+
+amazon linux
+ubuntu
+suse
+
+shell
+
+t
+k
+bash 
+
+putty  - login
+puttygen - pem to ppk
+
+IP address
+USERNAME
+PASSWORD 
+
+public IP   - DYNAMIC - EIP
+Private IP  - STATIC
+
+root user - complete access
+
+ec2-user -- change -- root user
+
+sudo su - root
+
+s- switch
+u - user
+
+pwd
+
+present
+working 
+directory
+
+folder -- directory
+
+cd   - change directory
+
+cd pathname
+
+/  - homepath
+
+ls - short list
+ll - long list
+
+ls -ltrh
+
+tr - time reverse
+h - size in KB
+
+directory
+
+mkdir dirname
+
+
+file 
+
+touch - empty file  -- touch filename
+
+cat > filename   - edit 
+
+ctrl + d - save 
+
+cat filename  - browse
+
+vi editor
+vi filename
+
+modes - esc , insert
+
+esc - read  save
+insert - edit
+
+save ===>  :wq!
+
+w - save
+q - quit
+
+curl  url
+wget url
+
+rw-r--r--
+
+
+:$
+:/searchword 
+
+:%s/oldvalue/newvalue/g
+
+
+cp - copy
+
+mv - 
+rename
+move 
+
+
+rw-r--r--
+
+---------
+
+---  >> root permission
+--- >> group  permission
+--- > > others permission
+
+r - read   - 4
+w - write - 4+2 =6
+x - delete - 1 >> 4 +2+1 = 7
+
+rwxrwxrwx
+
+rwxr--r--
+r--r--r--
+chmod 444 filename/directoryname
+
+
+chmod 777 file1
+
+rwxrwxrwx
+
+600  -
+
+760 - rwxrw----
+
+
+useradd username
+
+
+
+yum 
+apt-get
+
+
+
+
+
+
+
+
+
+
+
